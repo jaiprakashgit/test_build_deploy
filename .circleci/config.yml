@@ -1,59 +1,23 @@
 version: 2.1
 
-jobs:
- lint:
-  docker:
-   image: circleci/node:9.8.0-stretch-browsers
-   steps:
-   - checkout
-   - run:
-     name: "Install linting tool"
-     command: echo "Installation successfull"
-   - run: 
-     name: "Run linting on the root directory"
-     command: echo "linting successfull"
-     working_directory: "./"
-test: 
-  docker:
-   image: circleci/node:9.8.0-stretch-browsers
-   steps:
-   - checkout
-   - run:
-     name: "Run unit tests"
-     command: echo "Unit test passed"
-   - run: 
-     name: "Run Integration tests"
-     command: echo "Integration successfull"
-build: 
-  docker:
-   image: circleci/node:9.8.0-stretch-browsers
-   steps:
-   - checkout
-   - run:
-     name: "build docker image"
-     command: echo "image successfully built"
-   - run: 
-     name: "publish image"
-     command: echo "Published successfull" 
-deploy:
-  docker:
-    image: circleci/node:9.8.0-stretch-browsers
-  steps:
-     - checkout
-     - run:
-        name: "deploy image"
-        command: echo "deployed successfully"
+
     
 workflows:
   test_build_deploy:
    jobs: 
-    - lint
-    - test: 
-      requires: 
-        - lint
-    - build:
-       requires:
-         - test
-    - deploy:
-       requires:
-         - build
+    - build
+    
+  jobs:
+   build:
+    docker:
+     image: circleci/node:9.8.0-stretch-browsers
+    steps:
+    - checkout
+    - run:
+      name: "Install linting tool"
+      command: echo "Installation successfull"
+    - run: 
+      name: "Run linting on the root directory"
+      command: echo "linting successfull"
+      working_directory: "./"
+ 
