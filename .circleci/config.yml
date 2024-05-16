@@ -2,10 +2,7 @@ version: 2.1
 
 
     
-workflows:
-  test_build_deploy:
-   jobs: 
-    - build
+
     
   jobs:
    build:
