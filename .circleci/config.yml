@@ -3,7 +3,7 @@ version: 2.1
 jobs:
  lint:
   docker:
-   - image: alpine:latest
+   image: circleci/node:9.8.0-stretch-browsers
    steps:
    - checkout
    - run:
@@ -15,7 +15,7 @@ jobs:
      working_directory: "./"
 test: 
   docker:
-   - image: alpine:latest
+   image: circleci/node:9.8.0-stretch-browsers
    steps:
    - checkout
    - run:
@@ -26,7 +26,7 @@ test:
      command: echo "Integration successfull"
 build: 
   docker:
-   - image: alpine:latest
+   image: circleci/node:9.8.0-stretch-browsers
    steps:
    - checkout
    - run:
@@ -37,7 +37,7 @@ build:
      command: echo "Published successfull" 
 deploy:
   docker:
-    - image: alpine:latest
+    image: circleci/node:9.8.0-stretch-browsers
   steps:
      - checkout
      - run:
